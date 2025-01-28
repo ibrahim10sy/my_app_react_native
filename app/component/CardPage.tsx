@@ -11,7 +11,7 @@ type Props = ViewProps & {
   image?: string;
   lien?: string;
 };
-// const colors = useThemeColors();
+
 export default function CardPage({ style, title, image,lien,...props }: Props) {
     const colors = useThemeColors();
 
