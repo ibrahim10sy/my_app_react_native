@@ -1,10 +1,17 @@
 import { Stack } from "expo-router";
 import { LogBox } from "react-native";
 import { StatusBar } from 'expo-status-bar';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 
 LogBox.ignoreAllLogs(true);
+
+const queryClient = new QueryClient()
+
 export default function RootLayout() {
-  return <Stack
+  return (
+    <QueryClientProvider client={queryClient}>
+    <Stack
     screenOptions={{
       headerShown: false,
     }}
@@ -22,6 +29,9 @@ export default function RootLayout() {
           
         }}
         />
-     <StatusBar style="auto" />
+      <StatusBar style="auto" />
   </Stack>;
+  </QueryClientProvider>
+  );
+  
 }

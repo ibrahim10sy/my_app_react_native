@@ -19,10 +19,10 @@ return (
     <Link href={"/screen/searchPage"}> {/* Lien de redirection */}
         <View style={[styles.container, style]} {...props}>
         <Card style={styles.card}>
-            <Row gap={8}>
+            <Row gap={10}>
         
             <Image
-             source={image ? imageMap[image] : require("@/assets/images/logo.png")}
+              source={image ? imageMap[image] : require("@/assets/images/logo.png")}
             style={styles.image}
             />
             <Text style={styles.text} numberOfLines={2} ellipsizeMode="tail">

@@ -17,18 +17,18 @@ const styles = StyleSheet.create({
         lineHeight:12,
     },
     subtitle1:{
-        fontSize:14,
+        fontSize:18,
         lineHeight:16,
-        fontWeight:"bold",
+        fontWeight:"700",
     },
     subtitle2:{
-        fontSize:12,
+        fontSize:16,
         lineHeight:16,
         fontWeight:"bold",
     }
     ,
     subtitle3:{
-        fontSize:10,
+        fontSize:14,
         lineHeight:16,
         fontWeight:"bold",
     },

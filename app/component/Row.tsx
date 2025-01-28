@@ -11,6 +11,6 @@ export default function Row({ gap, style, ...props }: Props) {
 const rowStyle = {
     flexDirection: 'row',
     alignItems: 'center',
-
+    
     // justifyContent: 'space-between',
 } satisfies ViewStyle
