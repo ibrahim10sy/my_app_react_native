@@ -30,7 +30,7 @@ export default function RootLayout() {
         }}
         />
       <StatusBar style="auto" />
-  </Stack>;
+  </Stack>
   </QueryClientProvider>
   );
   
