@@ -9,5 +9,5 @@ const ENV = {
   
   export const API_URL = getEnvVars();
   
-  export const getStockImage = (id : any) => `${API_URL}/Stock/${id}`;
+  export const getStockImage = (idStock : any) => `${API_URL}/Stock/${idStock}`;
   

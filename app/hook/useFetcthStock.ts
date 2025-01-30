@@ -1,10 +1,10 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { API_URL } from '../constant/BaseUrl';
 
-const endpoint = `${API_URL}/Stock/`;
+const endpoint = `${API_URL}/Stock`;
 
 type API = {
-  '/getStock': {
+  '/getStocksByPaysWithPagination': {
     page: number;
     size: number;
     results: {}[];

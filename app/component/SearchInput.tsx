@@ -5,6 +5,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import ScrollView from "./ScrollView";
 import CardProduct from "./CardProduct";
+import { useInfiniteFecthQuery } from "../hook/useFetcthStock";
+import { useState } from "react";
+import { getStockImage } from "../constant/BaseUrl";
 
 type Props = {
   value: string,
@@ -13,6 +16,17 @@ type Props = {
 
 export default function SearchInput({ value, onChange }: Props) {
   const colors = useThemeColors();
+  const {data, isFetching, fetchNextPage} = useInfiniteFecthQuery('/getStocksByPaysWithPagination')
+  const stocks = data?.pages.flatMap(page => page.results.map(r => ({id:getStockImage(r)}))) ?? []
+  const [search, setSearch] = useState('')
+  const filteredPokemon = [
+    // ...(search ? 
+    //     stocks.filter(p => p..includes(search.toLowerCase()) ||
+    //   p.id.toString() === search)
+    //   : pokemons
+    // )
+  ]
+  console.log(stocks)
 
   return (
     <View style={{ flex: 1 }}>
