@@ -1,18 +1,20 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { API_URL } from '../constant/BaseUrl';
+import { Stock } from '../model/Stock';
 
 const endpoint = `${API_URL}/Stock`;
+const stock : Stock []= [];
 
 type API = {
   '/getStocksByPaysWithPagination': {
     page: number;
     size: number;
-    results: {}[];
+    results: {stock : Stock}[];
     totalPages: number;
   };
 };
 
-export function useInfiniteFecthQuery<T extends keyof API>(path: T, params?: Record<string, string | number>) {
+export function useInfiniteFecthQuery<T extends keyof API>(path: T, params?: Record<string, string | string>) {
   return useInfiniteQuery({
     queryKey: [path],
     initialPageParam: 0, 

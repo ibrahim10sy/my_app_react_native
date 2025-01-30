@@ -1,3 +1,5 @@
+import { Acteur } from "./acteur";
+
 export interface Unite {
     idUnite?: string;
     codeUnite?: string;

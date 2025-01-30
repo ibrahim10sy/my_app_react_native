@@ -1,4 +1,4 @@
-import { TextInput, View, Image, StyleSheet, Pressable } from "react-native";
+import {TextInput, View,FlatList, Image, StyleSheet, Pressable, ActivityIndicator } from "react-native";
 import useThemeColors from "../hook/useThemeColors";
 import Row from "./Row";
 import { Ionicons } from "@expo/vector-icons";
@@ -8,6 +8,7 @@ import CardProduct from "./CardProduct";
 import { useInfiniteFecthQuery } from "../hook/useFetcthStock";
 import { useState } from "react";
 import { getStockImage } from "../constant/BaseUrl";
+import { Stock } from "../model/Stock";
 
 type Props = {
   value: string,
@@ -17,15 +18,9 @@ type Props = {
 export default function SearchInput({ value, onChange }: Props) {
   const colors = useThemeColors();
   const {data, isFetching, fetchNextPage} = useInfiniteFecthQuery('/getStocksByPaysWithPagination')
-  const stocks = data?.pages.flatMap(page => page.results.map(r => ({id:getStockImage(r)}))) ?? []
+  const stocks = data?.pages.flatMap(page => page.results.map(r => r.stock)) ?? [];
   const [search, setSearch] = useState('')
-  const filteredPokemon = [
-    // ...(search ? 
-    //     stocks.filter(p => p..includes(search.toLowerCase()) ||
-    //   p.id.toString() === search)
-    //   : pokemons
-    // )
-  ]
+  const filteredStock =  stocks.filter(p => p.nomProduit!.includes(search.toLowerCase()))
   console.log(stocks)
 
   return (
@@ -51,7 +46,20 @@ export default function SearchInput({ value, onChange }: Props) {
       {/* Contenu défilant */}
       <ScrollView style={{ paddingTop: 80 }}>
         <View>
-          <CardProduct title="Pomme" localite="Bamako" prix="1000" />
+          <FlatList
+            data={filteredStock}
+            numColumns={2}
+            contentContainerStyle={[styles.gridGap, styles.list]}
+            columnWrapperStyle={styles.gridGap} 
+            keyExtractor={(item : Stock) => item.idStock?.toString() || 'default_key'}
+            ListFooterComponent={
+              isFetching ? <ActivityIndicator  color={colors.tint} /> : null
+            }
+            onEndReached={search ? undefined : () => fetchNextPage()}
+            renderItem={({ item }: { item: Stock }) => (
+              <CardProduct title={item.nomProduit} localite={item.origineProduit} prix={item.prix?.toString()}  style={{flex:1/3}} />
+              )}
+        />
         </View>
       </ScrollView>
     </View>
@@ -84,4 +92,16 @@ const styles = StyleSheet.create({
     height: 40,
     flex: 1,
   },
+  
+  body: {
+    flex: 1,
+    marginTop: 20
+  },
+  gridGap:{
+    gap: 8,
+  },
+  list :{
+    marginTop: 25,
+    padding: 5,
+  }
 });

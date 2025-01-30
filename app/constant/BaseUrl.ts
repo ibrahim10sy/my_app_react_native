@@ -4,7 +4,8 @@ const ENV = {
   };
   
   const getEnvVars = () => {
-    return ENV.dev;
+    return ENV.prod;
+    // return ENV.dev;
   };
   
   export const API_URL = getEnvVars();

@@ -11,11 +11,11 @@ type Props = ViewProps & {
   title?: string; 
   localite?: string; 
   prix?: string; 
-  image?: string;
+  idStock?: string;
   lien?: string;
 };
 
-export default function CardPage({ style, title,localite, prix, image,lien,...props }: Props) {
+export default function CardPage({ style, title,localite, prix, idStock,lien,...props }: Props) {
     const colors = useThemeColors();
 
 return (

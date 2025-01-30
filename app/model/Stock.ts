@@ -1,3 +1,10 @@
+import { Acteur } from "./acteur";
+import { Magasin } from "./magasin";
+import { Monnaie } from "./monnaie";
+import { Speculation } from "./speculation";
+import { Unite } from "./unite";
+import { ZoneProduction } from "./zoneProduction";
+
 export interface Stock {
     idStock?: string;
     codeStock?: string;
